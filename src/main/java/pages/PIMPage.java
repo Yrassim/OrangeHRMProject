@@ -1,17 +1,18 @@
 package pages;
 
 import browser.Browser;
-import dev.failsafe.internal.util.Assert;
+
+import org.testng.Assert;
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import java.util.List;
 
-import static browser.Browser.driver;
-
 public class PIMPage {
+    WebDriver driver = Browser.driver;
 
     @FindBy(linkText = "Recruitment") private WebElement recruitmentLink;
     @FindBy(css = "button[type='submit']") private WebElement submitButton;
@@ -19,8 +20,10 @@ public class PIMPage {
     @FindBy(xpath = "//div[@class=\"oxd-table-row oxd-table-row--with-border oxd-table-row--clickable\"]/div[3]/div")
     private WebElement firstNameElement;
 
-    @FindBy(xpath = "//div[@class=\"oxd-table-row oxd-table-row--with-border oxd-table-row--clickable\"]/div[3]/div")
+    @FindBy(xpath = "//div[@class=\"oxd-table-row oxd-table-row--with-border oxd-table-row--clickable\"]/div[4]/div")
     private WebElement lastNameElement;
+
+    @FindBy(linkText = "Admin") private WebElement adminLink;
 
     public RecruitmentPage navigateToRecruitmentLink(){
         recruitmentLink.click();
@@ -40,7 +43,14 @@ public class PIMPage {
         Assert.assertEquals(firstNameElement.getText(), firstName);
         Assert.assertEquals(lastNameElement.getText(), lastName);
 
+
         return this;
+    }
+
+    public AdminPage navigatToAdminPage(){
+
+        adminLink.click();
+        return PageFactory.initElements(Browser.driver, AdminPage.class);
     }
 
 }
