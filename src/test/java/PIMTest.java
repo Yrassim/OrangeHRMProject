@@ -1,19 +1,15 @@
-import browser.Browser;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.support.PageFactory;
-import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
-import pages.LoginPage;
 
-import java.time.Duration;
-
-public class FirstTest extends TestBase{
+public class PIMTest extends TestBase{
 
     //WebDriver driver;
 
     @Test
     public void test01(){
-        startLoginPage().loginToPIMPage();
+        startLoginPage()
+                .loginToPIMPage()
+                .searchEmployeeId("0083")
+                .validateFirstAndLastName("Joe", "Root");
 
         try {
             Thread.sleep(5000);
