@@ -8,8 +8,10 @@ public class PIMTest extends TestBase{
     public void test01(){
         startLoginPage()
                 .loginToPIMPage()
-                .searchEmployeeId("0083")
-                .validateFirstAndLastName("Joe", "Root");
+                .navigateToRecruitmentLink()
+                .selectOptionFromDropdown("QA Lead");
+//                .searchEmployeeId("0083")
+//                .validateFirstAndLastName("Joe", "Root");
 
         try {
             Thread.sleep(5000);
